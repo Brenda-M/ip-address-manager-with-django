@@ -1,0 +1,1 @@
+web: gunicorn ip_address_management_system.wsgi --log-file -

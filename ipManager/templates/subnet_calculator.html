@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="min-h-screen flex flex-col lg:flex-row items-center justify-center">
+  <div class="bg-white p-8 shadow-md rounded-lg w-96 mb-4 lg:mb-0 lg:mr-4">
+    <h1 class="text-2xl font-semibold mb-4">IPV4 Subnet Calculator</h1>
+    <form method="post" id="subnet-calculator-form">
+      {% csrf_token %}
+      <div class="mb-4 flex flex-col">
+        <label for="{{ form.ip_address.id_for_label }}" class="text-gray-700 font-bold mb-2">{{ form.ip_address.label }}</label>
+        {{ form.ip_address }}
+      </div>
+      <div class="mb-4 flex flex-col">
+        <label for="{{ form.network_class.id_for_label }}" class="text-gray-700 font-bold mb-2">{{ form.network_class.label }}</label>
+        {{ form.network_class }}
+      </div>
+      <div class="mb-4 flex flex-col">
+        <label for="{{ form.subnet_mask.id_for_label }}" class="text-gray-700 font-bold mb-2">{{ form.subnet_mask.label }}</label>
+        {{ form.subnet_mask }}
+      </div>
+      <button type="submit" class="text-white font-bold py-2 px-4 rounded w-full" style="background-color: #08355E">Calculate</button>
+    </form> 
+  </div>
+  {% if result %}
+    <div class="bg-white p-4 rounded shadow w-96">
+      <h2 class="text-lg font-semibold mb-2">Results:</h2>
+      <p><strong>Network Address:</strong> {{ result.network_address }}</p>
+      <p><strong>Broadcast Address:</strong> {{ result.broadcast_address }}</p>
+      <p><strong>Usable IP Range:</strong> {{ result.usable_ip_range }}</p>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
