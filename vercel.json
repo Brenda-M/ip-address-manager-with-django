@@ -1,0 +1,14 @@
+{
+  "builds": [{
+      "src": "ip_address_management_system/wsgi.py",
+      "use": "@ardnt/vercel-python-wsgi",
+      "config": { "maxLambdaSize": "15mb" }
+  }],
+  "routes": [
+      {
+          "src": "/(.*)",
+          "dest": "ip_address_management_system/wsgi.py"
+      }
+  ]
+}
+
